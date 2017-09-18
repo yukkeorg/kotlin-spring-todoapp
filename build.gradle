@@ -1,0 +1,61 @@
+buildscript {
+  ext {
+    kotlinVersion = "1.1.4-3"
+    springBootVersion = "2.0.0.M4"
+  }
+  repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+  }
+  dependencies {
+      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+      classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+      classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+  }
+}
+
+apply {
+    plugin("kotlin")
+    plugin("kotlin-spring")
+    plugin("org.springframework.boot")
+    plugin("idea")
+}
+
+group = "org.yukke"
+version = "0.0.1-SNAPSHOT"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+  compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+  compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+  compile("org.springframework.boot:spring-boot-starter:+")
+  compile("org.springframework.boot:spring-boot-starter-web:+")
+  compile("org.springframework.boot:spring-boot-starter-thymeleaf:+")
+  compile("org.springframework.boot:spring-boot-starter-security:+")
+  compile("org.springframework.boot:spring-boot-starter-data-jpa:+")
+  compile("org.springframework.boot:spring-boot-starter-mail:+")
+  compile("org.springframework.boot:spring-boot-starter-batch:+")
+  compile("org.thymeleaf.extras:thymeleaf-extras-java8time:+")
+  compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:+")
+  compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:+")
+  compile("com.h2database:h2:+")
+  compile("org.mybatis:mybatis:+")
+  compile("org.mybatis:mybatis-spring:+")
+  testCompile("org.springframework.boot:spring-boot-starter-test:+")
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("${buildDir}/classes/main/")
+    }
+}
